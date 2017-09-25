@@ -1,10 +1,9 @@
-module.exports = {
-  aritGeo: (arr) => {
-    if(arr.length === 0){
-      return 0;
-    }else if(arr.length ==1 || arr.length==2){
-      return -1;
-    }else{
+aritGeo = function(arr){
+  if(arr.constructor === Array){
+    if (arr.length<1){
+    return 0;
+    }
+    else{
       let testArit = true;
       let testGeo = true;
       const d = arr[1 ] - arr[0];
@@ -16,22 +15,28 @@ module.exports = {
           testArit = false;
           //checks if the array is not an arithmetic progression
           }
-        if((arr[i+1] / r) !== arr[i]){
-          testGeo = false;
-          //checks if the array is not a geometric progression
-        }
+          if((arr[i+1] / r) !== arr[i]){
+            testGeo = false;
+            //checks if the array is not a geometric progression
+          }
       }
-      if (testArit === true){
-        return "Arithmetic";
+      if (testArit){
+        return "arithmetic";
       }
-      else if (testGeo === true){
+      if (testGeo){
         return "Geometric";
       }
       else{
-        return - 1;
+        return -1;
       }
-    }  
-
+    }
+  }
+  else {
+    console.log("wrong parameter given");
+    return ;
   }
   
+  
 };
+
+module.exports = aritGeo;
